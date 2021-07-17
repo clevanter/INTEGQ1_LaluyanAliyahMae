@@ -1,57 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CMS.DL;
+using System;
 
 namespace CMS.BL
 {
     public class Create : ContactInformation
     {
-        InMemory memory = new InMemory();
-        DealInformation NewDeal = new DealInformation(); 
 
-        //in memory process of inserting new lead, contact, deal
-        public void AddALead()
+        public void CreateNewLead(string companyname, string firstname, string lastname, string position, string emailadd, long mobilenum,
+            long phonenum, string websitelink, string leadsource, string leadstatus, string industry, int employees, decimal annualrevenue,
+            int rating, string skypeid)
         {
-            
-            Console.WriteLine("\nLIST OF LEADS:");
-
-            memory._createLead.Add(new ContactInformation(FirstName, LastName));
-
-            //return "List of Leads";
-            //Console.WriteLine("\nLIST OF LEADS:");
-
-            foreach (ContactInformation item in memory._createLead)
-            {
-                Console.WriteLine(item.FirstName, item.LastName);
-            }
+            SqlData.InsertLead(companyname, firstname, lastname, position, emailadd, mobilenum, phonenum, websitelink, leadsource, leadstatus, industry, 
+                employees, annualrevenue, rating, skypeid);
+            SqlData.ShowLead(companyname);
         }
 
-        public void AddAContact()
+        public void CreateNewContact(string accountname, string leadsource, string firstname, string lastname, string position, string emailadd, string department, long mobilenum,
+            long phonenum, string birthdate, string assistant, long assistantphone, string skypeid)
         {
-
-            memory._createContact.Add(new ContactInformation(FirstName, LastName));
-
-            Console.WriteLine("\nLIST OF CONTACTS:");
-
-            foreach (ContactInformation item in memory._createContact)
-            {
-                Console.WriteLine(item.FirstName, item.LastName);
-            }
+            SqlData.InsertContact(accountname, leadsource, firstname, lastname, position, emailadd, department, mobilenum,
+             phonenum, birthdate, assistant, assistantphone, skypeid);
+            SqlData.ShowContact(accountname);
         }
 
-        public void AddADeal()
+        public void CreateNewDeal(string dealname, DateTime closingdate, string accountname, int probability, decimal expectedrevenue, string leadsource, string contactname,
+            string dealdescription, string status)
         {
+            SqlData.InsertDeal(dealname, closingdate, accountname, probability, expectedrevenue, leadsource, contactname,
+             dealdescription, status);
+            SqlData.ShowDeal(dealname);
+        }
 
-            memory._createDeal.Add(new DealInformation(NewDeal.DealName));
+        public void CreateNewAccount(string accountname, long accountnum, string industry, int rating, long phonenum, string websitelink, 
+            int employees, decimal annualrevenue)
+        {
+            SqlData.InsertAccount(accountname, accountnum, industry, rating, phonenum, websitelink, employees, annualrevenue);
+            SqlData.ShowAccount(accountname);
+        }
 
-            Console.WriteLine("\nLIST OF DEALS:");
+        public void CreateNewInteraction(string contactname, string type, long usednumber, string usedemail, DateTime durationanddate)
+        {
+            SqlData.InsertInteraction(contactname, type, usednumber, usedemail, durationanddate);
+        }
 
-            foreach (DealInformation item in memory._createDeal)
-            {
-                Console.WriteLine(item.DealName);
-            }
+        public void CreateNewTask(string tasktype, DateTime dateposted, DateTime duedate, string tasktitle, string taskdescription, string taskassigned, 
+            string progress)
+        {
+            SqlData.InsertTask(tasktype, dateposted, duedate, tasktitle, taskdescription, taskassigned, progress);
+        }
+
+        public void CreateNewReport(string reportname, string reportdescription, DateTime dateposted, string reportby)
+        {
+            SqlData.InsertReport(reportname, reportdescription, dateposted, reportby);
         }
     }
 }

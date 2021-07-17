@@ -16,8 +16,9 @@ namespace CMS.BL
         public string LeadSource { get; set; }
         public string ContactName { get; set; }
         public string DealDescription { get; set; }
+        public string Status { get; set; }
 
-    
+
         public DealInformation(string DealName)
         {
             this.DealName = DealName;

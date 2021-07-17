@@ -5,7 +5,6 @@ namespace CMS.BL
 {
     public class ContactInformation
     {
-        //private string _firstName;
 
         public Owner LeadOwner { get; set; }
         public Owner ContactOwner { get; set; }
@@ -80,9 +79,5 @@ namespace CMS.BL
 
         //    Console.WriteLine(_firstName);
         //}
-
-
-
-
     }
 }
